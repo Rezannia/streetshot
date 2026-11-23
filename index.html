@@ -359,5 +359,15 @@
   </section>
 </main>
 
+<script>
+  // هدایت به پرسش‌نامه بعد از ارسال موفق فرم
+  document.getElementById('photographerForm').addEventListener('submit', function(e) {
+    // اجازه بده Formspree فرم را ارسال کند، سپس به پرسش‌نامه هدایت کن
+    setTimeout(function() {
+      window.location.href = 'questionnaire.html';
+    }, 1200);
+  });
+</script>
+
 </body>
 </html>

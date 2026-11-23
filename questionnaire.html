@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#6750A4">
+<title>پرسش‌نامه ارزیابی | Street Shot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+  :root {
+    --md-primary: #6750A4;
+    --md-on-primary: #FFFFFF;
+    --md-primary-container: #EADDFF;
+    --md-on-primary-container: #21005D;
+    --md-secondary-container: #E8DEF8;
+    --md-on-secondary-container: #1D192B;
+    --md-background: #FEF7FF;
+    --md-on-background: #1D1B20;
+    --md-surface: #FEF7FF;
+    --md-on-surface: #1D1B20;
+    --md-surface-variant: #E7E0EC;
+    --md-on-surface-variant: #49454F;
+    --md-surface-container: #F3EDF7;
+    --md-outline: #79747E;
+    --md-outline-variant: #CAC4D0;
+    --md-error: #B3261E;
+    --md-radius-sm: 8px;
+    --md-radius-md: 12px;
+    --md-radius-lg: 16px;
+    --md-radius-xl: 28px;
+    --md-radius-full: 999px;
+    --md-elev-1: 0 1px 3px rgba(0,0,0,.08);
+    --md-elev-2: 0 3px 6px rgba(0,0,0,.08);
+    --md-font: 'Roboto', 'Vazirmatn', system-ui, sans-serif;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--md-font);
+    background: var(--md-background);
+    color: var(--md-on-background);
+    line-height: 1.9;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  button, input, select, textarea { font-family: inherit; font-size: 1rem; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--md-primary); outline-offset: 2px; border-radius: 4px; }
+  .container { width: min(880px, 92%); margin: 0 auto; }
+
+  .top-app-bar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(254,247,255,.92);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--md-outline-variant);
+    padding: calc(10px + var(--safe-top)) 0 10px;
+  }
+  .top-app-bar .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 1rem; color: var(--md-primary); }
+  .brand .material-symbols-outlined { font-size: 22px; }
+  .brand span:last-child { color: var(--md-on-surface); }
+  .progress-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 6px 12px; border-radius: var(--md-radius-full);
+    background: var(--md-primary-container); color: var(--md-on-primary-container);
+    font-size: .8rem; font-weight: 600;
+  }
+
+  .page-header { padding: clamp(32px, 6vw, 56px) 0 24px; }
+  .page-header h1 { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; line-height: 1.4; margin-bottom: 8px; }
+  .page-header p { color: var(--md-on-surface-variant); font-size: .95rem; max-width: 640px; }
+
+  .q-card {
+    background: var(--md-surface-container);
+    border-radius: var(--md-radius-xl);
+    padding: clamp(20px, 5vw, 36px);
+    border: 1px solid var(--md-outline-variant);
+    box-shadow: var(--md-elev-1);
+    margin-bottom: 24px;
+  }
+  .q-section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+    font-weight: 800;
+    color: var(--md-primary);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--md-primary-container);
+  }
+  .q-section-title .num {
+    display: inline-grid; place-items: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--md-primary); color: var(--md-on-primary);
+    font-size: .9rem; flex-shrink: 0;
+  }
+  .q-item { margin-bottom: 24px; }
+  .q-item:last-child { margin-bottom: 0; }
+  .q-label {
+    display: block;
+    font-weight: 600;
+    font-size: .95rem;
+    margin-bottom: 10px;
+    color: var(--md-on-surface);
+    line-height: 1.7;
+  }
+  .q-label .q-num { color: var(--md-primary); font-weight: 800; margin-left: 4px; }
+
+  .radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .radio-chip {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 18px;
+    border-radius: var(--md-radius-full);
+    border: 1.5px solid var(--md-outline);
+    background: var(--md-surface);
+    font-size: .9rem;
+    cursor: pointer;
+    transition: all .15s ease;
+    min-height: 44px;
+  }
+  .radio-chip:hover { border-color: var(--md-primary); }
+  .radio-chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .radio-chip:has(input:checked) {
+    background: var(--md-primary);
+    border-color: var(--md-primary);
+    color: var(--md-on-primary);
+    font-weight: 600;
+  }
+  .radio-chip:has(input:focus-visible) {
+    outline: 3px solid var(--md-primary); outline-offset: 2px;
+  }
+
+  .q-textarea, .q-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--md-outline);
+    border-radius: var(--md-radius-md);
+    background: var(--md-surface);
+    font-size: .95rem;
+    line-height: 1.7;
+    resize: vertical;
+    transition: border-color .15s, box-shadow .15s;
+    min-height: 48px;
+  }
+  .q-textarea { min-height: 90px; }
+  .q-textarea:focus, .q-input:focus {
+    outline: none;
+    border-color: var(--md-primary);
+    box-shadow: 0 0 0 4px rgba(103,80,164,.12);
+  }
+
+  .submit-bar {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: calc(48px + var(--safe-bottom));
+  }
+  .md-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 32px;
+    border-radius: var(--md-radius-full);
+    font-size: 1rem; font-weight: 700;
+    border: none; transition: all .15s ease;
+    min-height: 56px; touch-action: manipulation;
+  }
+  .md-btn-filled { background: var(--md-primary); color: var(--md-on-primary); box-shadow: var(--md-elev-1); }
+  .md-btn-filled:hover { box-shadow: var(--md-elev-2); filter: brightness(1.05); }
+  .md-btn-filled:active { transform: scale(.99); }
+  .md-btn .material-symbols-outlined { font-size: 22px; }
+  .submit-note { text-align: center; font-size: .85rem; color: var(--md-on-surface-variant); }
+
+  @media (max-width: 640px) {
+    .radio-group { flex-direction: column; }
+    .radio-chip { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-app-bar">
+  <div class="container">
+    <a href="index.html" class="brand" aria-label="Street Shot">
+      <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+      <span>Street Shot</span>
+    </a>
+    <span class="progress-badge">
+      <span class="material-symbols-outlined" style="font-size:16px;">assignment</span>
+      پرسش‌نامه
+    </span>
+  </div>
+</header>
+
+<main class="container">
+  <div class="page-header">
+    <h1>پرسش‌نامه ارزیابی عکاس</h1>
+    <p>لطفاً به سؤالات زیر با دقت و صداقت پاسخ دهید. پاسخ‌های شما به ما کمک می‌کند بهترین همکاری را بسازیم.</p>
+  </div>
+
+  <form id="questionnaireForm" action="https://formspree.io/f/xvkavkzj" method="POST">
+
+    <section class="q-card">
+      <h2 class="q-section-title"><span class="num">۱</span> شخصیت و روابط اجتماعی</h2>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱.</span> خودتان را فردی برون‌گرا می‌دانید یا درون‌گرا؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q1" value="برون‌گرا" required><span>برون‌گرا</span></label>
+          <label class="radio-chip"><input type="radio" name="q1" value="درون‌گرا"><span>درون‌گرا</span></label>
+          <label class="radio-chip"><input type="radio" name="q1" value="ترکیبی"><span>ترکیبی</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۲.</span> آیا از صحبت کردن و ارتباط گرفتن با افراد کاملاً غریبه لذت می‌برید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q2" value="بله، خیلی زیاد" required><span>بله، خیلی زیاد</span></label>
+          <label class="radio-chip"><input type="radio" name="q2" value="بله، تا حدی"><span>بله، تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q2" value="خیر"><span>خیر</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۳.</span> چقدر در شروع مکالمه با افراد جدید اعتمادبه‌نفس دارید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q3" value="زیاد" required><span>زیاد</span></label>
+          <label class="radio-chip"><input type="radio" name="q3" value="متوسط"><span>متوسط</span></label>
+          <label class="radio-chip"><input type="radio" name="q3" value="کم"><span>کم</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۴.</span> اگر لازم باشد در طول روز با ۵۰ تا ۱۰۰ فرد جدید ارتباط بگیرید، چقدر برایتان راحت است؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q4" value="خیلی راحت" required><span>خیلی راحت</span></label>
+          <label class="radio-chip"><input type="radio" name="q4" value="تا حدی"><span>تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q4" value="سخت"><span>سخت</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q-card">
+      <h2 class="q-section-title"><span class="num">۲</span> سرعت عمل و توانایی جسمانی</h2>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۵.</span> آیا فردی پرانرژی، سریع و چابک هستید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q5" value="بله" required><span>بله</span></label>
+          <label class="radio-chip"><input type="radio" name="q5" value="تا حدی"><span>تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q5" value="خیر"><span>خیر</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۶.</span> آیا توانایی انجام کارهای پرتحرک و ایستادن طولانی‌مدت را دارید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q6" value="بله" required><span>بله</span></label>
+          <label class="radio-chip"><input type="radio" name="q6" value="تا حدی"><span>تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q6" value="خیر"><span>خیر</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۷.</span> آیا مشکل یا سابقه درد در ناحیه کمر، پا، زانو یا مفاصل دارید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q7" value="خیر" required><span>خیر</span></label>
+          <label class="radio-chip"><input type="radio" name="q7" value="بله، خفیف"><span>بله، خفیف</span></label>
+          <label class="radio-chip"><input type="radio" name="q7" value="بله، شدید"><span>بله، شدید</span></label>
+        </div>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۸.</span> آیا از نظر جسمانی آمادگی فعالیت مستمر و پرتحرک در طول روز را دارید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q8" value="بله" required><span>بله</span></label>
+          <label class="radio-chip"><input type="radio" name="q8" value="تا حدی"><span>تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q8" value="خیر"><span>خیر</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q-card">
+      <h2 class="q-section-title"><span class="num">۳</span> روحیه و ثبات رفتاری</h2>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۹.</span> معمولاً روحیه شما در طول روز چطور است؟ آیا فردی پرانرژی و باانگیزه هستید؟</label>
+        <textarea class="q-textarea" name="q9" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۰.</span> وقتی با جواب منفی، بی‌توجهی یا برخورد نامناسب افراد مواجه می‌شوید، چطور روحیه خودتان را حفظ می‌کنید؟</label>
+        <textarea class="q-textarea" name="q10" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۱.</span> آیا پیش می‌آید که بدون دلیل مشخص دچار افت انرژی، بی‌حوصلگی یا کاهش انگیزه شوید؟</label>
+        <textarea class="q-textarea" name="q11" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۲.</span> وقتی روز سختی دارید، چطور اجازه نمی‌دهید حال روحی‌تان روی عملکرد کاری شما تأثیر بگذارد؟</label>
+        <textarea class="q-textarea" name="q12" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+    </section>
+
+    <section class="q-card">
+      <h2 class="q-section-title"><span class="num">۴</span> انگیزه و انرژی شخصی</h2>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۳.</span> چه چیزهایی به شما انگیزه و انرژی می‌دهند؟</label>
+        <textarea class="q-textarea" name="q13" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۴.</span> وقتی خسته یا بی‌حوصله می‌شوید، چطور خودتان را دوباره فعال و پرانرژی می‌کنید؟</label>
+        <textarea class="q-textarea" name="q14" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۵.</span> چه چیزی باعث می‌شود حتی در روزهای سخت با انگیزه به کارتان ادامه دهید؟</label>
+        <textarea class="q-textarea" name="q15" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۶.</span> آیا برای رسیدن به درآمد بالاتر، آمادگی دارید با انرژی و پشتکار بیشتری فعالیت کنید؟</label>
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="q16" value="بله، قطعاً" required><span>بله، قطعاً</span></label>
+          <label class="radio-chip"><input type="radio" name="q16" value="تا حدی"><span>تا حدی</span></label>
+          <label class="radio-chip"><input type="radio" name="q16" value="خیر"><span>خیر</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q-card">
+      <h2 class="q-section-title"><span class="num">۵</span> ارزیابی نهایی</h2>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۷.</span> از نظر خودتان مهم‌ترین نقطه قوت شما برای موفقیت در این شغل چیست؟</label>
+        <textarea class="q-textarea" name="q17" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۸.</span> چرا فکر می‌کنید برای این موقعیت شغلی گزینه مناسبی هستید؟</label>
+        <textarea class="q-textarea" name="q18" placeholder="پاسخ خود را بنویسید..." required></textarea>
+      </div>
+      <div class="q-item">
+        <label class="q-label"><span class="q-num">۱۹.</span> منطقه محل سکونت؟</label>
+        <input type="text" class="q-input" name="region" placeholder="مثال: تهران، منطقه ۶" required>
+      </div>
+    </section>
+
+    <div class="submit-bar">
+      <button type="submit" class="md-btn md-btn-filled">
+        <span class="material-symbols-outlined" aria-hidden="true">send</span>
+        ارسال پرسش‌نامه
+      </button>
+      <p class="submit-note">پس از ارسال، تیم ما حداکثر ۴۸ ساعت پاسخ شما را بررسی می‌کند.</p>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>
